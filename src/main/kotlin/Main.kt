@@ -2,8 +2,6 @@ package org.example
 
 import org.w3c.dom.Element
 import org.w3c.dom.Node
-import org.w3c.dom.NodeList
-import java.nio.file.Path
 import javax.xml.parsers.DocumentBuilderFactory
 import kotlin.io.path.Path
 
@@ -18,7 +16,7 @@ fun main() {
     val db = dbf.newDocumentBuilder()
 
     // Creamos el fichero con la ruta
-    val fileXml = Path("src/main/resources/empleados.xml")
+    val fileXml = Path("src/main/resources/productos.xml")
 
     // Parsea el fichero
     val document = db.parse(fileXml.toFile())
@@ -33,7 +31,7 @@ fun main() {
     root.normalize()
 
     // 2 para obtener elementos por su nombre de etiqueta
-    val listaNodos = root.getElementsByTagName("empleado")
+    val listaNodos = root.getElementsByTagName("producto")
 
 
     // Cuando tenemos la nodeList, podemos iterar sobre ella
@@ -48,7 +46,7 @@ fun main() {
             val nodoElemento = nodo as Element
 
             // Podemos buscar los elementos que nos convienen
-            val elementoNombre = nodoElemento.getElementsByTagName("apellido")
+            val elementoNombre = nodoElemento.getElementsByTagName("nombre")
             val elementoPrecio = nodoElemento.getElementsByTagName("precio")
 
 
@@ -57,7 +55,7 @@ fun main() {
             val textContentPrecio = elementoPrecio.item(0).textContent.toDouble()
 
             //imprimir
-            println("Producto $i\n\t - Nombre: $textContentNombre\n\t - Dep: $textContentPrecio")
+            println("Producto $i\n\t - Nombre: $textContentNombre\n\t - Precio: $textContentPrecio")
 
         }
     }
